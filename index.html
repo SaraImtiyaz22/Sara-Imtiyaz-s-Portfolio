@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARA IMTIYAZ | UI/UX Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        noir: {
+                            base: '#050505',    
+                            surface: '#0F0F0F', 
+                            highlight: '#1A1A1A',   
+                        },
+                        gold: {
+                            DEFAULT: '#C5A065', 
+                            light: '#E5C585',  
+                            dark: '#8A7045',     
+                        },
+                        text: {
+                            main: '#FFFFFF',
+                            muted: '#A3A3A3',   
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Lato"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+                        'gold-glow': '0 0 15px rgba(197, 160, 101, 0.2)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #C5A065; }
+
+        /* Apple Glass Navbar */
+        .apple-nav {
+            background: rgba(18, 18, 18, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Modern Glass Card */
+        .glass-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Gold Gradient Text */
+        .text-gold-gradient {
+            background: linear-gradient(to right, #E5C585, #C5A065, #8A7045);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Profile Image Frame */
+        .profile-frame {
+            position: relative;
+        }
+        .profile-frame::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: linear-gradient(45deg, #C5A065, transparent, #8A7045);
+            border-radius: 24px; /* Matches Rounded-2xl */
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(8px);
+        }
+
+        /* Falling Stars Animation */
+        .star-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: -1; overflow: hidden;
+        }
+        .star {
+            position: absolute; top: -10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 2px rgba(197, 160, 101, 0.3);
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0); opacity: 0; }
+            10% { opacity: 0.7; }
+            80% { opacity: 0.7; }
+            100% { transform: translateY(110vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="font-sans text-text-main bg-noir-base antialiased selection:bg-gold selection:text-noir-base overflow-x-hidden">
+
+    <div class="fixed inset-0 z-[-1] overflow-hidden">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[100px]"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-900/5 rounded-full blur-[100px]"></div>
+        
+        <div class="star-container opacity-40">
+            <div class="star w-[1px] h-[1px]" style="left: 10%; animation-duration: 8s; animation-delay: 0s;"></div>
+            <div class="star w-[2px] h-[2px]" style="left: 20%; animation-duration: 12s; animation-delay: 2s;"></div>
+            <div class="star w-[1px] h-[1px]" style="left: 50%; animation-duration: 7s; animation-delay: 3s;"></div>
+            <div class="star w-[2px] h-[2px]" style="left: 80%; animation-duration: 13s; animation-delay: 0s;"></div>
+            <div class="star w-[1px] h-[1px]" style="left: 35%; animation-duration: 10s; animation-delay: 7s;"></div>
+            <div class="star w-[2px] h-[2px]" style="left: 65%; animation-duration: 11s; animation-delay: 5s;"></div>
+        </div>
+    </div>
+
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl z-50 rounded-full apple-nav shadow-glass transition-all duration-300">
+        <div class="px-8 py-4 flex items-center justify-between">
+            <a href="#" class="font-serif text-xl font-bold tracking-widest">
+                SARA<span class="text-gold">.</span>
+            </a>
+
+            <div class="hidden md:flex space-x-8 text-[11px] font-bold text-text-muted tracking-[0.2em] uppercase">
+                <a href="#about" class="hover:text-gold transition-colors">Profile</a>
+                <a href="#skills" class="hover:text-gold transition-colors">Skills</a>
+                <a href="#projects" class="hover:text-gold transition-colors">Designs</a>
+                <a href="#experience" class="hover:text-gold transition-colors">Experience</a>
+            </div>
+
+            <a href="#contact" class="hidden md:inline-block px-6 py-2 rounded-full border border-gold/30 text-gold text-[10px] font-bold uppercase tracking-widest hover:bg-gold hover:text-noir-base transition-all duration-300">
+                Let's Talk
+            </a>
+            
+            <button class="md:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+            </button>
+        </div>
+    </nav>
+
+    <section id="about" class="min-h-screen flex flex-col md:flex-row items-center justify-center px-6 pt-28 max-w-6xl mx-auto gap-12 md:gap-20">
+        
+        <div class="order-1 md:order-2 relative group">
+            <div class="profile-frame w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-2xl">
+                <img src="images/profile1.png" alt="Sara Imtiyaz" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+            </div>
+            
+            <div class="absolute -bottom-6 -right-6 glass-card px-6 py-3 rounded-xl border-l-4 border-gold">
+                <p class="text-[10px] uppercase tracking-widest text-text-muted">Specialty</p>
+                <p class="text-sm font-bold text-white">UI/UX & Web Design</p>
+            </div>
+        </div>
+
+        <div class="order-2 md:order-1 text-center md:text-left max-w-xl">
+            <p class="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4 animate-pulse">Designing Experiences</p>
+            <h1 class="font-serif text-5xl lg:text-7xl text-white mb-6 leading-tight">
+                Sara <span class="text-gold-gradient italic">Imtiyaz</span>
+            </h1>
+            
+            <p class="text-text-muted text-lg font-light leading-relaxed mb-8">
+                Aspiring UI/UX Designer transitioning from software engineering. I combine my <strong class="text-white">technical background</strong> with a passion for <strong class="text-white">visual aesthetics</strong> to create intuitive, beautiful digital interfaces.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <a href="#projects" class="px-8 py-3 bg-gold text-noir-base font-bold tracking-widest text-xs uppercase hover:bg-white transition-all duration-300 rounded shadow-gold-glow">
+                    View Designs
+                </a>
+                <a href="#experience" class="px-8 py-3 glass-card text-white font-bold tracking-widest text-xs uppercase hover:border-gold hover:text-gold transition-colors rounded">
+                    My Journey
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-12 px-6 bg-noir-surface border-y border-white/5">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-10">
+                <span class="text-gold text-xs tracking-[0.2em] uppercase">Technical Arsenal</span>
+                <h2 class="font-serif text-3xl text-white mt-2">Tools & Expertise</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all">
+                    <h3 class="text-white font-serif mb-4 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                        Design
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1 text-xs text-text-muted"><span>UI/UX Principles</span> <span class="text-gold">Learning</span></div>
+                            <div class="h-1 bg-white/10 rounded-full"><div class="h-full bg-gold w-[60%]"></div></div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-2 py-1 bg-noir-base rounded text-[10px] border border-white/10">Figma</span>
+                            <span class="px-2 py-1 bg-noir-base rounded text-[10px] border border-white/10">Wireframing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all">
+                    <h3 class="text-white font-serif mb-4 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        Frontend
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1 text-xs text-text-muted"><span>HTML/CSS/Bootstrap</span> <span class="text-gold">Intermediate</span></div>
+                            <div class="h-1 bg-white/10 rounded-full"><div class="h-full bg-gold w-[75%]"></div></div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-2 py-1 bg-noir-base rounded text-[10px] border border-white/10">Responsive Design</span>
+                            <span class="px-2 py-1 bg-noir-base rounded text-[10px] border border-white/10">VS Code</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all">
+                    <h3 class="text-white font-serif mb-4 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
+                        Backend
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1 text-xs text-text-muted"><span>Python & Java</span> <span class="text-white/40">Basic Foundation</span></div>
+                            <div class="h-1 bg-white/10 rounded-full"><div class="h-full bg-gold w-[40%]"></div></div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-2 py-1 bg-noir-base rounded text-[10px] border border-white/10">SQL</span>
+                            <span class="px-2 py-1 bg-noir-base rounded text-[10px] border border-white/10">Logic Building</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 px-6 bg-noir-base">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center justify-between gap-4 mb-12">
+                <div>
+                    <span class="text-gold text-xs tracking-[0.2em] uppercase">My Works</span>
+                    <h2 class="font-serif text-3xl text-white mt-2">UI/UX Designs</h2>
+                </div>
+                <div class="h-[1px] w-24 bg-gold opacity-50 hidden md:block"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="glass-card rounded-2xl overflow-hidden group hover:border-gold/30 transition-all duration-500">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="images/cafe.png" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-noir-base/20 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-serif text-xl text-white group-hover:text-gold transition-colors">La Café</h3>
+                            <span class="text-[10px] border border-white/20 px-2 py-1 rounded text-white/50">Complete UI</span>
+                        </div>
+                        <p class="text-text-muted text-sm leading-relaxed mb-6">
+                            Designed a comprehensive User Interface for a coffee shop brand. Focused on warm aesthetics, intuitive menu navigation, and brand storytelling.
+                        </p>
+                        <a href="#" class="text-xs font-bold uppercase tracking-widest text-white hover:text-gold transition-colors flex items-center gap-2">
+                            View Case Study <span class="text-gold">&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden group hover:border-gold/30 transition-all duration-500">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="images/interior.png" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-noir-base/20 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-serif text-xl text-white group-hover:text-gold transition-colors">Interior Luxe</h3>
+                            <span class="text-[10px] border border-white/20 px-2 py-1 rounded text-white/50">Landing Page</span>
+                        </div>
+                        <p class="text-text-muted text-sm leading-relaxed mb-6">
+                            A minimalist landing page for an interior design firm. Prioritized negative space, high-quality imagery, and modern typography to convey luxury.
+                        </p>
+                        <a href="#" class="text-xs font-bold uppercase tracking-widest text-white hover:text-gold transition-colors flex items-center gap-2">
+                            View Design <span class="text-gold">&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden group hover:border-gold/30 transition-all duration-500">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="images/Lume.png" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-noir-base/20 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-serif text-xl text-white group-hover:text-gold transition-colors">Lume Studio</h3>
+                            <span class="text-[10px] border border-white/20 px-2 py-1 rounded text-white/50">Website UI</span>
+                        </div>
+                        <p class="text-text-muted text-sm leading-relaxed mb-6">
+                            A chic and functional website interface for a beauty salon. Features include a service menu, booking integration flow, and portfolio gallery.
+                        </p>
+                        <a href="https://lumestudio-three.vercel.app/" class="text-xs font-bold uppercase tracking-widest text-white hover:text-gold transition-colors flex items-center gap-2">
+                            View Design <span class="text-gold">&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-20 px-6 bg-noir-surface">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+            
+            <div>
+                <h3 class="font-serif text-2xl text-white mb-8 flex items-center gap-3">
+                    <span class="w-2 h-2 bg-gold rounded-full"></span> Experience
+                </h3>
+                
+                <div class="border-l border-white/10 pl-8 relative space-y-12">
+                    <div class="relative">
+                        <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-noir-base border-2 border-gold"></div>
+                        <h4 class="text-xl text-white font-serif">Intern - Marketing & Tech Support</h4>
+                        <p class="text-gold text-xs uppercase tracking-widest mt-1 mb-4">Driefcase Health Tech | Nov 2022 - Mar 2025</p>
+                        <ul class="text-text-muted text-sm leading-relaxed space-y-2 list-disc pl-4">
+                            <li>Coordinated with IT teams for HMIS deployment in 50+ hospitals.</li>
+                            <li>Provided first-level technical support to doctors and staff.</li>
+                            <li>Maintained technical documentation and collected user feedback.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-serif text-2xl text-white mb-8 flex items-center gap-3">
+                    <span class="w-2 h-2 bg-white/50 rounded-full"></span> Education
+                </h3>
+                
+                <div class="border-l border-white/10 pl-8 relative space-y-12">
+                    <div class="relative">
+                        <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-noir-base border-2 border-white/50"></div>
+                        <h4 class="text-xl text-white font-serif">B.Tech, Computer Science</h4>
+                        <p class="text-white/50 text-xs uppercase tracking-widest mt-1 mb-2">HMFA Memorial Institute | 2017 - 2021</p>
+                        <p class="text-gold text-sm font-bold">CGPA: 7.4/10</p>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-noir-base border-2 border-white/50"></div>
+                        <h4 class="text-xl text-white font-serif">Intermediate (12th)</h4>
+                        <p class="text-white/50 text-xs uppercase tracking-widest mt-1 mb-2">National Inter College | 2014 - 2016</p>
+                        <p class="text-gold text-sm font-bold">Percentage: 72.4%</p>
+                    </div>
+                    
+                    <div class="glass-card p-6 rounded-xl border border-gold/20 mt-6">
+                        <h5 class="text-gold text-xs uppercase tracking-widest mb-3">Certifications</h5>
+                        <ul class="text-white text-sm space-y-1">
+                            <li>• Programming in Java (NIIT)</li>
+                            <li>• National Cadet Corps (Govt. of India)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    
+    <footer id="contact" class="py-12 bg-noir-base border-t border-white/5 text-center">
+        <h2 class="font-serif text-3xl text-gold-gradient mb-6">Let's Create Together</h2>
+        <div class="flex justify-center gap-6 mb-8 text-sm text-text-muted">
+            <a href="mailto:saraimtiyaz23@gmail.com" class="hover:text-gold transition flex items-center gap-2">
+                saraimtiyaz23@gmail.com
+            </a>
+            <span>|</span>
+            <a href="tel:+919935090685" class="hover:text-gold transition flex items-center gap-2">
+                +91 9935090685
+            </a>
+        </div>
+        
+        <div class="flex justify-center gap-6 mb-8 opacity-60">
+            <a href="https://github.com/saraimtiyaz22" class="hover:text-gold hover:scale-110 transition-transform">GitHub</a>
+            <a href="https://www.behance.net/saraimtiyaz" class="hover:text-gold hover:scale-110 transition-transform">Behance</a>
+            <a href="https://www.linkedin.com/in/sara-imtiyaz" class="hover:text-gold hover:scale-110 transition-transform">LinkedIn</a>
+        </div>
+
+        <p class="text-[10px] uppercase tracking-widest text-text-muted/30">© 2025 Sara Imtiyaz.</p>
+    </footer>
+
+</body>
+</html>
